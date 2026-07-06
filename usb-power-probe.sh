@@ -8,7 +8,7 @@ CANDIDATES="53 55 56 58 60 67 68 69 70 45 46 47 48 49"
 # Look for the Qualcomm pinctrl chip in debugfs
 BASE=$(cat /sys/kernel/debug/gpio 2>/dev/null | grep -E "pinctrl-msm|1000000.pinctrl" | head -1 | sed -n 's/.*GPIOs \([0-9]*\)-.*/\1/p')
 
-# Fallback if auto-detect fails (IPQ4019 is usually 412)
+# Fallback if auto-detect fails (IPQ4019 is usually 512)
 if [ -z "$BASE" ]; then
     echo "Warning: Could not auto-detect GPIO base. Assuming 512."
     BASE=512 # TEW-829DRU is 512 not 412 - assume this is safe guess.
