@@ -18,22 +18,37 @@ echo "Actual GPIOs tested will be: $(echo $LED_CANDIDATES | sed "s/ / + $BASE /g
 echo "Press Ctrl+C at any time to abort."
 echo "---"
 
+# Trap handler to clean up all GPIOs on Ctrl+C or script exit
+cleanup() {
+    echo ""
+    echo "Cleaning up GPIO exports..."
+    for pin in $LED_CANDIDATES; do
+        GPIO=$((pin + BASE))
+        echo "$GPIO" > /sys/class/gpio/unexport 2>/dev/null || true
+    done
+    echo "Cleanup complete."
+}
+trap cleanup INT EXIT
+
 STOP=0
 for pin in $LED_CANDIDATES; do
     [ "$STOP" -eq 1 ] && break
 
     GPIO=$((pin + BASE))
 
-    # Export GPIO once
+    # Force unexport at start of iteration to prevent persistence issues
+    echo "$GPIO" > /sys/class/gpio/unexport 2>/dev/null || true
+
+    # Export GPIO
     echo "$GPIO" > /sys/class/gpio/export 2>/dev/null && \
         echo "Successfully exported Logical GPIO $pin (Actual: $GPIO)." || \
-        { echo "Failed to export Logical GPIO $pin (Actual: $GPIO)."; continue; }
+        { echo "Failed to export Logical GPIO $pin (Actual: $GPIO). Skipping."; continue; }
     sleep 1
 
     # Configure as output
     echo "out" > /sys/class/gpio/gpio$GPIO/direction 2>/dev/null && \
         echo "Successfully set direction for Logical GPIO $pin (Actual: $GPIO)." || \
-        { echo "Failed to set direction for Logical GPIO $pin (Actual: $GPIO)."; continue; }
+        { echo "Failed to set direction for Logical GPIO $pin (Actual: $GPIO). Skipping."; continue; }
     sleep 1
 
     # Set LOW for 5 seconds
