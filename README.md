@@ -24,3 +24,6 @@ This script detects which GPIO pin corresponds to a physical button by monitorin
 4. follow the on-screen prompts: hold the button, press Enter, release the button, press Enter
 5. if a match is found, you'll be asked whether to continue scanning other pins
 6. if the router crashes or reboots, remove that GPIO from your probe list and reboot
+
+## Disclaimer
+mooleshacat and catspeed-cc are not responsible for damage to hardware and to proceed at your own risk.
