@@ -8,9 +8,9 @@ Based on experience, the lower-numbered GPIOs are typically things like nand, sw
 
 #### Please note that probing certain pins may occasionally cause your device to crash or reboot. If this happens, simply reboot the device and remove the problematic GPIO from your scan list before trying again.
 
-## ⚠️ LICENSE WARNING: GPLv3 INCOMPATIBILITY⚠️
+## ⚠️ LICENSE WARNING: GPLv2 / GPLv3 INCOMPATIBILITY⚠️
 
-These scripts are licensed under GPLv3-or-later.  It is NOT compatible with GPLv2-only projects (such as the Linux Kernel or OpenWrt).
+These scripts are licensed under GPLv3-or-later. It is NOT compatible with GPLv2-only projects (such as the Linux Kernel or OpenWrt).
 
 DO NOT use this script to build binaries for distribution if the underlying source code is licensed GPLv2-only.  Doing so creates a license conflict that makes the resulting binary undistributable and constitutes a copyright violation.
 
