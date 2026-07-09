@@ -29,7 +29,7 @@ mooleshacat / catspeed.cc is not responsible for any potential license violation
 
 `owrt-dev-suite-utils` is integrated into another GPLv3-or-later project `owrt-dev-suite` which contains an advanced and highly customizable build script for OpenWRT.
 
-For advanced and highly customizable developer build script for OpenWRT, see the dedicated **GPLv3 `owrt-dev-suite`**
+For advanced and highly customizable developer build script for OpenWRT, see the dedicated **GPLv3 `owrt-dev-suite`**:<br />
 👉 [github.com/catspeed-cc/owrt-dev-suite](https://github.com/catspeed-cc/owrt-dev-suite)
 
 ## finding GPIOs to probe
